@@ -2992,6 +2992,12 @@ namespace charutils
             ShowError("charutils::hasTrait Attempt to reference a trait from a non-character entity: %s %i", PChar->name.c_str(), PChar->id);
             return 0;
         }
+
+        // Everyone has Dual Wield!
+        if (TraitID==TRAIT_DUAL_WIELD) {
+            return 1;
+        }
+
         return hasBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
     }
 
