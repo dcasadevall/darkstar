@@ -3898,6 +3898,11 @@ namespace battleutils
                 break;
             }
 
+            // Bypass charm check
+            if (PVictim->objtype==TYPE_MOB && PCharmer->objtype==TYPE_PC) {
+                CharmTime = 1800000;
+            }
+
             //apply charm time extension from gear
             uint16 charmModValue = (PCharmer->getMod(Mod::CHARM_TIME));
             // adds 5% increase
