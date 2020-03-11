@@ -333,8 +333,10 @@ uint16 CBattleEntity::GetMainWeaponDmg()
 {
     if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]))
     {
-        if ((weapon->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
+        // ItemId 17440 => KClub
+        if ((weapon->getReqLvl() > GetMLevel()) && objtype == TYPE_PC || (weapon->getID() == 17440 && GetMLevel() < 63))
         {
+            uint8 reqLvl = weapon->getID() == 17440 ? 63 : weapon->getReqLvl();
             uint16 dmg = weapon->getDamage();
             dmg *= GetMLevel() * 3;
             dmg /= 4;
