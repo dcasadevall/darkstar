@@ -3992,6 +3992,12 @@ inline int32 CLuaBaseEntity::canEquipItem(lua_State *L)
     CItemEquipment* PItem = (CItemEquipment*)itemutils::GetItem(itemID);
     CBattleEntity* PChar = (CBattleEntity*)m_PBaseEntity;
 
+    // K Club exception. Removes level restriction / job restriction
+    if (PItem->getID() == 17440) {
+        lua_pushboolean(L, false);
+        return 1;
+    }
+
     if (!(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))))
     {
         lua_pushboolean(L, false);
